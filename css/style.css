@@ -1,3 +1,14 @@
+:root{
+  --shght: 55px;
+  --shbordpx: 3px;
+  --shbordclr1: grey;
+  --shbordclr2: darkorange;
+  --shbord: var(--shbordpx) solid var(--shbordclr1);
+  --shcght: var(--shght);
+}
+* {
+  box-sizing: border-box;
+}
 body{
   margin: 0px;
 }
@@ -5,49 +16,80 @@ body{
   background: linear-gradient(to top, #090909, #444444);
   font: 30px Verdana, sans-serif;
   color: #999999;
-  height: 100px;
+  height: var(--shght);
   width: 100%;
   margin-top:0px;
   display: grid;
   overflow:hidden;
   position:relative;
+  grid-template-columns: 300px auto;
 }
+
 .shapka_container{
-  height: 100px;
-  position:absolute;
-  width: calc(100% - 400px);
+  height: var(--shcght);
+  float:left;
+  left: 100px;
   display: grid;
-  grid-row: 1;
-  justify-content: right;
-  float: right;
-  right: 100px;
-}
-.shapka_knopka{
-  width: 100px;
-  height: 100px;
-  grid-row: 1;
-  text-align: center;
-  border-right: 0px solid #ffffffaa;
-  position:relative;
-  bottom:0px;
-}
-.shapka_button_text{
-  position:absolute;
   text-align:center;
-  width:100px;
-  bottom:5px;
+  grid-row: 1;
+  justify-content: left;
+  border-bottom: var(--shbord);
+  transition: 1s;
 }
+
 .shapka_logo{
   text-align: center;
-  width: 300px;
-  line-height: 100px;
+  display: table;
   grid-row: 1;
+  width: 300px;
+  /* padding-top: 4px; */
 }
+
 .shapka_logo_text{
-  height: 100%;
-  line-height: 100px;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  font-weight: bold;
 }
+
 .shapka_button_text a:link, a:visited{
+  text-decoration: none;
+  color:inherit;
+}
+
+.shapka_container ul {
+  margin: 0;
+  padding: 0;
+  height: inherit;
+  transform: skew(-25deg);
+  font-family: Helvetica Neue, Helvetica, sans-serif;
+}
+
+.shapka_container ul li {
+  display: block;
+  float:left;
+  border-left: 2px solid #666;
+  text-transform:uppercase;
+  position:relative;
+  height: inherit;
+  transition: 0.15s;
+}
+.shapka_container ul li:hover{
+  border-bottom: var(--shbordpx) solid var(--shbordclr2);
+  color:var(--shbordclr2);
+}
+.shapka_container ul li:last-child{
+  border-right: 2px solid #666;
+}
+.shapka_container ul li a{
+  display:block;
+  padding:0.35em 1em;
+  color:inherit;
+  text-decoration:none;
+  transform:skew(25deg);
+  transition: 0.15s;
+}
+.shapka_container ul li a:link, a:visited{
   text-decoration: none;
   color:inherit;
 }
