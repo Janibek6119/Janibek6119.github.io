@@ -1,70 +1,37 @@
-:root{
-  --shght: 55px;
-  --shbordpx: 3px;
-  --shbordclr1: grey;
-  --shbordclr2: darkorange;
-  --shbord: var(--shbordpx) solid var(--shbordclr1);
-  --shcght: var(--shght);
-}
 * {
   box-sizing: border-box;
 }
+a:link, a:visited{
+  text-decoration: none;
+}
+.telo a:hover{
+  color: darkorange;
+}
 html, body {
   height: 100%;
-  /* padding: 10px; */
   margin: 0;
 }
 body{
-  /* display:flex;
-  flex-direction: column; */
   height:auto;
-  /* scroll-behavior: auto; */
-
 }
 .bg-image-wrapper{
-  overflow:hidden;
-  min-width: 100%;
-  min-height: 100%;
-  position: absolute;
+  filter:blur(5px);
   z-index: -1;
   position:fixed;
   top:-7px;
   left: -7px;
   right: -7px;
+  bottom: -7px;
 }
 .bg-image{
-  /* transform: scale(1.1); */
-  /* overflow:hidden; */
   min-width: 100%;
   min-height: 100%;
-  /* position:fixed; */
-  /* position: absolute; */
-  /* margin-left:-5px; */
-  /* margin-right:-50px; */
-  /* flex-grow: 1; */
-  /* display: block; */
-  /* left: -5px; */
-  /* top:50px; */
-  /* margin-top: 50px; */
-  /* bottom:-5px;*/
-  /* margin-top: 10px; */
-  /* position: fixed; */
-  /* right: -5px; */
-  /* z-index: 1; */
-  /* background-color: black; */
-  /* background-attachment: fixed; */
   background-size: cover;
   background-image: url(../img/darkwood.jpg);
-  /* box-sizing: content-box; */
-  filter:blur(5px);
+  background-position: center;
 }
-.telo{
-  text-align: center;
-  font: 40px bold Verdana, sans-serif;
-  color: #ccc
-}
+
 .shapka{
-  /* background: linear-gradient(to top, #333, #444444); */
   background: #333;
   font: 20px Verdana, sans-serif;
   color: white;
@@ -72,46 +39,27 @@ body{
   width: 100%;
   margin-top:0px;
   display: grid;
-  /* overflow:hidden; */
   position:relative;
   grid-template-columns: auto;
   box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.7)
-}
-
-.shapka_container{
-  height: auto;
-  /* float: left; */
-  /* left: 100px; */
-  /* background: brown; */
-  /* display: table; */
-  /* text-align:center; */
-  /* grid-row: 1; */
-  /* justify-content: left; */
-  /* border-bottom: var(--shbord); */
-  /* border-right: 1px solid white; */
-  /* transition: 1s; */
 }
 
 .shapka ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  /* width:100%; */
 }
 
 .shapka ul li {
+  cursor:pointer;
   float: left;
   height: auto;
-  /* background: lightgreen; */
-  border-right: 1px solid #999;
+  /* border-right: 1px solid #999; */
   text-transform:uppercase;
   font: 20px Arial, sans-serif;
-  /* position:relative; */
-  /* height: inherit; */
-  /* transition: 0.15s; */
 }
 .shapka ul li:hover:not(.active){
-  color:rgb(255,90,0);
+  color:rgb(255,100,0);
   background: #111;
   text-shadow: 0px 0px 20px rgba(255, 64, 0, 0.8),
   0px 0px 20px rgba(255, 64, 0, 0.3);
@@ -122,6 +70,7 @@ body{
   text-shadow: 0px 0px 10px rgba(255,255,255,0.7);
 }
 .shapka ul li:last-child{
+  cursor:pointer;
   border-right: none;
 }
 .shapka ul li a{
@@ -132,14 +81,80 @@ body{
 .shapka ul li a:link, a:visited{
   color:inherit;
 }
-.telo a{
-  /* padding:0.35em 0.6em 0.1em 0.6em; */
-  /* color:inherit; */
-  /* text-decoration:none; */
+.contacts{
+  position:fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  border: 1px solid black;
+  border-radius: 10px;
+  background:grey;
+  z-index: 30;
+  width: 500px;
+  max-width: 30%;
 }
-.telo a:hover{
-  color:var(--shbordclr2);
+.contacts.active{
+  transform: translate(-50%, -50%) scale(1);
 }
-.telo a:link, a:visited{
-  text-decoration: none;
+.contacts-header{
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+.contacts-header .title{
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+.contacts-header .close-button{
+  cursor:pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.contacts-body{
+  padding: 10px 15px;
+}
+#overlay{
+  position:fixed;
+  z-index: 29;
+  opacity: 0;
+  top: 0;
+  left :0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  transition: 20ms;
+}
+#overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.telo{
+  text-align: center;
+  font: 40px bold Verdana, sans-serif;
+  color: #ccc;
+  width:100%;
+  height:100%;
+  display:table;
+}
+.left{
+  float:left;
+  width: 20%;
+  height: 100%;
+}
+.mid{
+  float:left;
+  width:60%;
+  height: 100%;
+  background: rgba(255,255,255,0.07)
+}
+.right{
+  float:left;
+  width:20%;
+  height: 100%;
 }
