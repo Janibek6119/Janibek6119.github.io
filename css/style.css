@@ -38,13 +38,9 @@ body{
   color: white;
   height: auto;
   width: 100%;
-  /* margin-top:0px; */
   top: 0px;
   display: flex;
   position: fixed;
-  /* justify-content: left; */
-  /* position: relative; */
-  /* grid-template-columns: auto; */
   box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.7)
 }
 
@@ -55,16 +51,13 @@ body{
   margin: 0;
   padding: 0;
   display: inline-block;
-  /* justify-content: flex-end; */
 }
 
 .shapka ul li {
   float: left;
   height: auto;
-  /* border-right: 1px solid #999; */
   text-transform: uppercase;
   font: 20px Arial, sans-serif;
-  /* line-height: 23px; */
 }
 .shapka ul li:hover:not(.active){
   color:rgb(255,100,0);
@@ -76,10 +69,6 @@ body{
   color: white;
   background: rgb(240,64,0);
   text-shadow: 0px 0px 10px rgba(255,255,255,0.7);
-}
-.shapka ul li:last-child{
-  cursor:pointer;
-  border-right: none;
 }
 .shapka ul li a{
   display:block;
@@ -160,10 +149,11 @@ body{
 }
 .mid{
   float:left;
+  flex: 1 1 auto;
   width:60%;
   height: auto;
   background: rgba(255,255,255,0.07);
-  flex: 1 1 auto;
+  display: block;
 }
 .right{
   float:left;
@@ -171,4 +161,48 @@ body{
   height: auto;
   flex: 0 1 auto;
   background: rgba(146, 255, 155, 0.082);
+}
+#brickgame{
+  width: 500px;
+  height: 500px;
+  background: white;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(10, 50px);
+  grid-template-rows: repeat(10, 50px);
+}
+#brickgame > div{
+  background: grey;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 50px;
+  outline: 1px solid #afafaf;
+}
+#dragplace{
+  margin: auto;
+  margin-top: 20px;
+  width: 500px;
+  height: auto;
+  background: pink;
+}
+.dragcontainer{
+  background: #333;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+.draggable{
+  padding: 1rem;
+  background: #ddd;
+  color: darkred;
+  border: 1px solid black;
+  cursor: grab;
+}
+.dragging{
+  opacity: 0.5;
+  padding: 0.5rem;
+}
+.pressedhello{
+  text-shadow: 0px 0px 16px rgb(255, 0, 76),
+  0px 0px 7px rgb(243, 0, 0),
+  0px 0px 22px rgba(0, 0, 0, 0.692);
 }
