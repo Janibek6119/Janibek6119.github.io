@@ -13,12 +13,12 @@ const heading = document.getElementById("hello")
 heading.style.cursor = "pointer"
 ranCol = () => Math.random() * 255
 heading.onclick = () => {
-	let clr = `rgb(${rancol()}, ${rancol()}, ${rancol()})`
+	let clr = `rgb(${ranCol()}, ${ranCol()}, ${ranCol()})`
 	heading.style.color = clr
 }
 heading.onmousedown = () => heading.classList.add("pressedhello")
-heading.onmouseup   = () => heading.classList.remove("pressedhello")
-heading.onmouseout  = () => heading.classList.remove("pressedhello")
+heading.onmouseup = () => heading.classList.remove("pressedhello")
+heading.onmouseout = () => heading.classList.remove("pressedhello")
 /********************** UNKNOWN BRICK GAME ****************************/
 // get the div of the "game" and fill it with cells
 const brickgame = document.getElementById("brickgame")
@@ -107,16 +107,20 @@ function closeContacts(contacts) {
 }
 /******************** SORTABLE DRAG N DROP ****************************/
 // get draggables and (their) containers
-const draggables = document.querySelectorAll(".draggable")
+var draggables = [...document.querySelectorAll(".draggable")]
 const containers = document.querySelectorAll(".dragcontainer")
 // start/end dragging ::> adds/removes "dragging" class to draggables
 draggables.forEach((draggable) => {
 	draggable.addEventListener("dragstart", () => {
-		draggable.classList.add("dragging")
+		setTimeout(function () {
+			draggable.classList.add("dragging")
+		}, 0)
 	})
 
 	draggable.addEventListener("dragend", () => {
-		draggable.classList.remove("dragging")
+		setTimeout(function () {
+			draggable.classList.remove("dragging")
+		}, 0)
 	})
 })
 // add "drag over" event listener to containers.
@@ -142,7 +146,6 @@ function getDragAfterElement(container, y) {
 		(closest, child) => {
 			const box = child.getBoundingClientRect()
 			const offset = box.height / 2 + box.top - y
-			console.log(offset)
 			// element is below the cursos && that's the closest among all siblings
 			if (offset > 0 && offset < closest.offset) {
 				return { offset: offset, element: child }
@@ -153,3 +156,40 @@ function getDragAfterElement(container, y) {
 		{ offset: Number.POSITIVE_INFINITY }
 	).element
 }
+
+const addbuttons = document.querySelectorAll("#additem")
+const rembuttons = document.querySelectorAll("#remitem")
+var nextdragnum = 5
+addbuttons.forEach((addbtn) => {
+	addbtn.addEventListener("click", () => {
+		draggables.push(document.createElement("p"))
+		let i = draggables.length - 1
+		draggables[i].classList.add("draggable")
+		draggables[i].draggable = true
+		draggables[i].textContent = `${nextdragnum++}`
+		addbtn.parentNode.appendChild(draggables[i])
+		draggables[i].addEventListener("dragstart", (e) => {
+			setTimeout(function () {
+				e.target.classList.add("dragging")
+			}, 0)
+		})
+		draggables[i].addEventListener("dragend", (e) => {
+			setTimeout(function () {
+				e.target.classList.remove("dragging")
+			}, 0)
+		})
+	})
+})
+
+rembuttons.forEach((rembtn) => {
+	rembtn.addEventListener("click", () => {
+		const papka = [...rembtn.parentNode.querySelectorAll("p")]
+		if (papka[0]) {
+			papka[0].classList.add("vanishing")
+			setTimeout(function () {
+				papka[0].remove()
+				draggables = [...document.querySelectorAll(".draggable")]  // refresh the list
+			}, 150)
+		}
+	})
+})
